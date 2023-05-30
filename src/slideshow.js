@@ -2,6 +2,7 @@ import { cats } from "./assets";
 import "./slideshow.scss";
 
 const Slideshow = ((images) => {
+  let timeout;
   let currentImage = 0;
   const imagesLength = Object.keys(images).length - 1;
 
@@ -26,10 +27,17 @@ const Slideshow = ((images) => {
     });
   };
 
+  // TODO: Fix multiple TOs issue by clearing previous TOs
+  const advanceImage = () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(nextImg, 5000);
+  };
+
   const moveSSTape = () => {
     let leftCoords = currentImage * 500;
     tape.style.left = `-${leftCoords}px`;
     activateDot();
+    advanceImage();
   };
 
   const moveToImage = (index) => {
@@ -74,6 +82,7 @@ const Slideshow = ((images) => {
   const init = () => {
     populateSlideshowTape();
     generateDots();
+    advanceImage();
     bindButtons();
   };
 
