@@ -38,9 +38,20 @@ const Slideshow = ((images) => {
     currentImage > 0 ? (currentImage -= 1) : (currentImage = imagesLength);
     moveSSTape();
   };
+
+  const bindButtons = () => {
+    const buttonNext = document.querySelector(".next-image");
+    buttonNext.addEventListener("click", nextImg);
+    const buttonPrev = document.querySelector(".prev-image");
+    buttonPrev.addEventListener("click", prevImg);
+  };
+
   const init = () => {
     populateSlideshowTape();
+    bindButtons();
   };
+
   return { init };
 })(cats);
+
 export { Slideshow as default };
