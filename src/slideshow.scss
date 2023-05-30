@@ -49,3 +49,21 @@ $slideshow-width: 500px;
   width: 50%;
 }
 
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid black;
+  border-radius: 50%;
+  // background: grey;
+}
+
+.active {
+  background: black;
+}

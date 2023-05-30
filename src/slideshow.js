@@ -4,7 +4,10 @@ import "./slideshow.scss";
 const Slideshow = ((images) => {
   let currentImage = 0;
   const imagesLength = Object.keys(images).length - 1;
+
   const tape = document.querySelector(".slideshow-tape");
+  const dots = document.querySelector(".dots");
+
   const generateImage = (url) => {
     const img = new Image();
     img.src = url;
@@ -26,7 +29,12 @@ const Slideshow = ((images) => {
   const moveSSTape = () => {
     let leftCoords = currentImage * 500;
     tape.style.left = `-${leftCoords}px`;
+    activateDot();
   };
+
+  const moveToImage = (index) => {
+    currentImage = index;
+    moveSSTape();
   };
 
   const nextImg = () => {
@@ -39,6 +47,23 @@ const Slideshow = ((images) => {
     moveSSTape();
   };
 
+  const activateDot = () => {
+    const allDots = document.querySelectorAll(".dot");
+    allDots.forEach((dot) => dot.classList.remove("active"));
+    allDots[currentImage].classList.add("active");
+  };
+
+  const generateDots = () => {
+    for (let i = 0; i <= imagesLength; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      dot.addEventListener("click", () => moveToImage(i));
+
+      dots.appendChild(dot);
+    }
+    activateDot();
+  };
+
   const bindButtons = () => {
     const buttonNext = document.querySelector(".next-image");
     buttonNext.addEventListener("click", nextImg);
@@ -48,6 +73,7 @@ const Slideshow = ((images) => {
 
   const init = () => {
     populateSlideshowTape();
+    generateDots();
     bindButtons();
   };
 
