@@ -2,6 +2,8 @@ import { cats } from "./assets";
 import "./slideshow.scss";
 
 const Slideshow = ((images) => {
+  let currentImage = 0;
+  const imagesLength = Object.keys(images).length - 1;
   const tape = document.querySelector(".slideshow-tape");
   const generateImage = (url) => {
     const img = new Image();
@@ -21,6 +23,21 @@ const Slideshow = ((images) => {
     });
   };
 
+  const moveSSTape = () => {
+    let leftCoords = currentImage * 500;
+    tape.style.left = `-${leftCoords}px`;
+  };
+  };
+
+  const nextImg = () => {
+    currentImage < imagesLength ? (currentImage += 1) : (currentImage = 0);
+    moveSSTape();
+  };
+
+  const prevImg = () => {
+    currentImage > 0 ? (currentImage -= 1) : (currentImage = imagesLength);
+    moveSSTape();
+  };
   const init = () => {
     populateSlideshowTape();
   };
