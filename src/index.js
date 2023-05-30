@@ -1,4 +1,5 @@
 import "./style.css";
+import Slideshow from "./slideshow";
 
 const toggleDrawer = (drawerToggleClass, drawerListClass) => {
   const drawerToggle = document.querySelectorAll(drawerToggleClass);
@@ -12,3 +13,5 @@ const toggleDrawer = (drawerToggleClass, drawerListClass) => {
 };
 
 toggleDrawer(".drawer-toggle", ".drawer-list");
+
+Slideshow.init();

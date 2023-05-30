@@ -1,0 +1,30 @@
+$slideshow-height: 500px;
+$slideshow-width: 500px;
+
+.slideshow {
+  margin-top: 40px;
+  width: $slideshow-width;
+  height: $slideshow-height;
+}
+
+.slideshow-container {
+  border: 5px solid black;
+  overflow: hidden;
+  position: relative;
+}
+
+.slideshow-tape {
+  display: flex;
+  position: relative;
+  transition: left 0.5s;
+}
+
+.image-container {
+  width: $slideshow-width;
+  height: $slideshow-width;
+}
+
+.image {
+  width: $slideshow-width;
+  height: $slideshow-height;
+}
